@@ -1,18 +1,18 @@
 import { Button, Info } from './Contact.styled';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactSlice';
-export const Contact = ({ contact: { id, name, number } }) => {
+import { deleteContact } from 'redux/operations';
+export const Contact = ({ contact: { id, name, phone } }) => {
   const dispatch = useDispatch();
-
   const hendleDeleteContact = () => {
+    console.log(id);
     dispatch(deleteContact(id));
   };
 
   return (
     <>
       <Info>
-        {name}: {number}
+        {name}: {phone}
       </Info>
       <Button type="button" className="TodoList__btn" onClick={hendleDeleteContact}>
         Удалить
@@ -25,6 +25,6 @@ Contact.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }).isRequired,
 };
